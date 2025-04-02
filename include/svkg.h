@@ -13,12 +13,12 @@ typedef struct {
     SVKG_AudioSystem audio;
 } SVKG_Context;
 
-SVKG_Context *SVKG_ContextInit(int window_w, int window_h, const char *title);
-void SVKG_ContextDestroy(SVKG_Context* ctx);
-bool SVKG_ContextShouldQuit(const SVKG_Context* ctx);
+SVKG_Context *SVKG_Context_Init(int window_w, int window_h, const char *title);
+void SVKG_Context_Destroy(SVKG_Context* ctx);
+bool SVKG_Context_ShouldQuit(const SVKG_Context* ctx);
 
-void SVKG_ContextBeginFrame(SVKG_Context* ctx);
-void SVKG_ContextEndFrame(SVKG_Context* ctx);
+void SVKG_Context_BeginFrame(SVKG_Context* ctx);
+void SVKG_Context_EndFrame(SVKG_Context* ctx);
 
 bool SVKG_Input_IsKeyPressed(const SVKG_Context *ctx, int key); 
 bool SVKG_Input_IsKeyJustPressed(const SVKG_Context *ctx, int key); 

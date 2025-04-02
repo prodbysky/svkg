@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <slog.h>
+#include <stdint.h>
 #include <svkg_graphics.h>
 
 SVKG_GraphicsSystem SVKG_GraphicsSystem_Init(int window_w, int window_h,
@@ -36,4 +37,12 @@ SVKG_GraphicsSystem SVKG_GraphicsSystem_Init(int window_w, int window_h,
 void SVKG_GraphicsSystem_Destroy(SVKG_GraphicsSystem *system) {
     glfwTerminate();
     system->window = NULL;
+}
+
+SVKG_Color SVKG_Color_Get(uint32_t hex) {
+    uint8_t r = (uint8_t)(hex >> 24);
+    uint8_t g = (uint8_t)(hex >> 16);
+    uint8_t b = (uint8_t)(hex >> 8);
+    uint8_t a = (uint8_t)hex;
+    return (SVKG_Color){r, g, b, a};
 }

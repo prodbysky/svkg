@@ -2,10 +2,16 @@
 #include <string.h>
 
 #include "GLFW/glfw3.h"
+#include "svkg_audio.h"
 #include "svkg_input.h"
+#include "svkg_math.h"
 #include <slog.h>
 #include <stdlib.h>
 #include <svkg.h>
+
+#define MINIAUDIO_IMPLEMENTATION
+#include <miniaudio.h>
+
 static void key_callback(GLFWwindow *window, int key, int scancode, int action,
                          int mods);
 static void cursor_callback(GLFWwindow *window, double xpos, double ypos);
@@ -54,6 +60,8 @@ SVKG_Context *SVKG_ContextInit(int window_w, int window_h, const char *title) {
     return NULL;
   }
 
+  ctx->audio = SVKG_AudioSystem_Init();
+
   slog_info("Successfully loaded and initialized the SVKG context");
   return ctx;
 }
@@ -62,6 +70,7 @@ void SVKG_ContextDestroy(SVKG_Context *ctx) {
   glfwTerminate();
   slog_destroy();
   ctx->window = NULL;
+  SVKG_AudioSystem_Destroy(&ctx->audio);
   free(ctx);
 }
 
@@ -108,6 +117,13 @@ float SVKG_Input_GetMousePositionX(const SVKG_Context *ctx) {
 }
 float SVKG_Input_GetMousePositionY(const SVKG_Context *ctx) {
   return ctx->input.mouse_y;
+}
+
+SVKG_Vec2 SVKG_Input_GetMousePosition(const SVKG_Context *ctx) {
+  return (SVKG_Vec2){
+      .x = ctx->input.mouse_x,
+      .y = ctx->input.mouse_y,
+  };
 }
 float SVKG_Input_GetScrollDelta(const SVKG_Context *ctx) {
   return ctx->input.scroll_dy;

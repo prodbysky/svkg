@@ -1,0 +1,2 @@
+add_executable(svkg_example_hello_world main.c)
+target_link_libraries(svkg_example_hello_world PRIVATE svkg)

@@ -1,0 +1,12 @@
+[submodule "extern/glfw"]
+	path = extern/glfw
+	url = https://github.com/glfw/glfw
+[submodule "extern/imgui"]
+	path = extern/imgui
+	url = https://github.com/ocornut/imgui
+[submodule "extern/miniaudio"]
+	path = extern/miniaudio
+	url = https://github.com/mackron/miniaudio
+[submodule "extern/slog"]
+	path = extern/slog
+	url = https://github.com/kala13x/slog

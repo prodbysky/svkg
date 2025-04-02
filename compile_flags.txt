@@ -1,0 +1,13 @@
+-Iextern/raylib/src/
+-Iextern/
+-Iinclude/
+-Iextern/glad/include/
+-Iextern/imgui/
+-Iextern/glfw/include/
+-Iextern/miniaudio/
+-Iextern/slog/src/
+
+
+-Wall 
+-Werror 
+--extra-warnings

@@ -10,3 +10,6 @@
 [submodule "extern/slog"]
 	path = extern/slog
 	url = https://github.com/kala13x/slog
+[submodule "extern/cglm"]
+	path = extern/cglm
+	url = https://github.com/recp/cglm

@@ -19,7 +19,7 @@ static void mouse_button_callback(GLFWwindow *window, int button, int action,
                                   int mods);
 static void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
-SVKG_Context *SVKG_ContextInit(int window_w, int window_h, const char *title) {
+SVKG_Context *SVKG_Context_Init(int window_w, int window_h, const char *title) {
   SVKG_Context *ctx = calloc(1, sizeof(SVKG_Context));
   ctx->input = SVKG_InputSystem_Init();
 
@@ -66,7 +66,7 @@ SVKG_Context *SVKG_ContextInit(int window_w, int window_h, const char *title) {
   return ctx;
 }
 
-void SVKG_ContextDestroy(SVKG_Context *ctx) {
+void SVKG_Context_Destroy(SVKG_Context *ctx) {
   glfwTerminate();
   slog_destroy();
   ctx->window = NULL;
@@ -74,14 +74,14 @@ void SVKG_ContextDestroy(SVKG_Context *ctx) {
   free(ctx);
 }
 
-bool SVKG_ContextShouldQuit(const SVKG_Context *ctx) {
+bool SVKG_Context_ShouldQuit(const SVKG_Context *ctx) {
   return glfwWindowShouldClose(ctx->window);
 }
 
-void SVKG_ContextBeginFrame(SVKG_Context *ctx) {
+void SVKG_Context_BeginFrame(SVKG_Context *ctx) {
   SVKG_InputSystem_Update(&ctx->input);
 }
-void SVKG_ContextEndFrame(SVKG_Context *ctx) {
+void SVKG_Context_EndFrame(SVKG_Context *ctx) {
   glfwSwapBuffers(ctx->window);
   glfwPollEvents();
 }

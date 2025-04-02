@@ -1,4 +1,6 @@
 #include <glad/glad.h>
+
+#include <GL/gl.h>
 #include <slog.h>
 #include <stdint.h>
 #include <svkg_graphics.h>
@@ -38,7 +40,10 @@ void SVKG_GraphicsSystem_Destroy(SVKG_GraphicsSystem *system) {
     glfwTerminate();
     system->window = NULL;
 }
-
+void SVKG_GraphicsSystem_ClearScreen(SVKG_Color c) {
+    glClearColor(c.r / 255.0, c.g / 255.0, c.b / 255.0, c.a / 255.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
 SVKG_Color SVKG_Color_Get(uint32_t hex) {
     uint8_t r = (uint8_t)(hex >> 24);
     uint8_t g = (uint8_t)(hex >> 16);

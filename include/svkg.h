@@ -2,14 +2,15 @@
 #define SVKG_H
 
 #include "svkg_audio.h"
+#include "svkg_graphics.h"
 #include "svkg_input.h"
 #include "svkg_math.h"
 #include <GLFW/glfw3.h>
 #include <stdbool.h>
 
 typedef struct {
-    GLFWwindow* window;
     SVKG_InputSystem input;
+    SVKG_GraphicsSystem graphics;
     SVKG_AudioSystem audio;
 } SVKG_Context;
 

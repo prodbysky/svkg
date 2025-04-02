@@ -24,6 +24,7 @@ add_library(svkg STATIC
     src/svkg.c
     src/svkg_input.c
     src/svkg_audio.c
+    src/svkg_graphics.c
     src/svkg_math.c
 )
 

@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "GLFW/glfw3.h"
+#include "cglm/cam.h"
 #include "svkg_audio.h"
 #include "svkg_graphics.h"
 #include "svkg_input.h"
@@ -19,7 +20,7 @@ static void cursor_callback(GLFWwindow *window, double xpos, double ypos);
 static void mouse_button_callback(GLFWwindow *window, int button, int action,
                                   int mods);
 static void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
-
+static void resize_callback(GLFWwindow *window, int width, int height);
 SVKG_Context *SVKG_Context_Init(int window_w, int window_h, const char *title) {
     SVKG_Context *ctx = calloc(1, sizeof(SVKG_Context));
     ctx->input = SVKG_InputSystem_Init();
@@ -40,6 +41,7 @@ SVKG_Context *SVKG_Context_Init(int window_w, int window_h, const char *title) {
     ctx->audio = SVKG_AudioSystem_Init();
 
     glfwSetWindowUserPointer(ctx->graphics.window, ctx);
+    glfwSetWindowSizeCallback(ctx->graphics.window, resize_callback);
     glfwSetKeyCallback(ctx->graphics.window, key_callback);
     glfwSetCursorPosCallback(ctx->graphics.window, cursor_callback);
     glfwSetMouseButtonCallback(ctx->graphics.window, mouse_button_callback);
@@ -143,4 +145,11 @@ static void scroll_callback(GLFWwindow *window, double xoffset,
     (void)xoffset;
     SVKG_Context *ctx = glfwGetWindowUserPointer(window);
     ctx->input.next_scroll_dy += yoffset;
+}
+
+static void resize_callback(GLFWwindow *window, int width, int height) {
+    SVKG_Context *ctx = glfwGetWindowUserPointer(window);
+    glm_ortho(0, width, height, 0, -1, 1, ctx->graphics.projection);
+
+    glViewport(0, 0, width, height);
 }

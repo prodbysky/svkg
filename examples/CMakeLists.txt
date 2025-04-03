@@ -1,2 +1,3 @@
 add_subdirectory(hello_world)
 add_subdirectory(hello_sounds)
+add_subdirectory(rectangle)

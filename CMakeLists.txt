@@ -18,6 +18,7 @@ include_directories(
     extern/imgui_bindings/
     extern/slog/src/
     extern/imgui/
+    extern/cglm/include/
 )
 
 add_library(svkg STATIC

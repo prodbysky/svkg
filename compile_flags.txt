@@ -6,6 +6,7 @@
 -Iextern/glfw/include/
 -Iextern/miniaudio/
 -Iextern/slog/src/
+-Iextern/cglm/include/
 
 
 -Wall 

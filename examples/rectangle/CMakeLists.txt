@@ -1,0 +1,2 @@
+add_executable(svkg_example_rectangle main.c)
+target_link_libraries(svkg_example_rectangle PRIVATE svkg)
